@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!--<meta http-equiv="refresh" content="2; url=../contacte.html">-->
+    <meta http-equiv="refresh" content="2; url=../contacte.html">
     <title>Removed</title>
 </head>
 <body>
-input removed (<div id="contact-id"></div>)
+input added (<div id="contact-id"></div>)
 
 <script>
     var parameters = location.search.substr(1);  // search luam tot cem am transmis catre pagina cu semnul ?(inclusiv ?). substr1 - elimina 1caracter din strig
@@ -14,8 +14,8 @@ input removed (<div id="contact-id"></div>)
     var paramArray = parameters.split('&');  //
     console.info(paramArray);
 
-//    document.getElementsById('contact-id').innerHTML = parameters;
-     document.getElementById('contact-id').innerHTML = paramArray.join('; <br>') + ';';
+//  document.getElementById('contact-id').innerHTML = parameters;
+    document.getElementById('contact-id').innerHTML = paramArray.join('; <br>') + ';';
 
 </script>
 
