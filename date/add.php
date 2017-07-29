@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<!--    <meta http-equiv="refresh" content="2; url=../contacte.html">-->
-    <title>Removed</title>
+    <meta http-equiv="refresh" content="2; url=../contacte.html">
+    <title>Added</title>
 </head>
 <body>
 

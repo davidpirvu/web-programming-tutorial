@@ -32,14 +32,14 @@
 
 <h3>Tabel inmultire</h3>
   <form action = "" >
-      <input type="number">
+      <input type="number" name="number" value="18">
       <button> Multiplica </button>
   </form>
 
   |
   <?php
     for ($i=1; $i<=10; $i++){
-        echo "<a href='?number=$i'>$i</a>";
+        echo "<a href='?number=$i'>$i</a> |";
     }
   ?>
 
