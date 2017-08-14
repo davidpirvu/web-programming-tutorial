@@ -6,7 +6,7 @@ function getRow(contact) {
     var row = '<tr><td>' + lastName + '</td><td>' + firstName + '</td><td>' + phone + '</td>' +
         '<td class="actions">'+
             '<span><a href="date/removed.html?id=' + id + '">&#9986;</a></span> '+
-            '<span><a class="edit" href="#">&#x270E;</a></span>'+
+            '<span><a href="#" class="edit" data-id="'+ id +'">&#x270E;</a></span>'+
         '</td>' +
         '</tr>';
     return row;
@@ -18,26 +18,45 @@ function createRow(contact){
     tableContent += getRow(contact);
 }
 
-$.ajax('date/contacte.json').done(function(contacte){
-    console.info('contacte', contacte);
-    contacte.forEach(createRow);
+$.ajax('date/contacte.json', {
+    cache: false,
+    dataType: 'json'
+}).done(function(contacte){   // ajax face un request
+    console.debug('contacts loaded', contacte);
+    contacte.forEach(createRow);  // se creaza un string din contactele venite de pe server
     $("#contacts-list tbody").html(tableContent);
 
-    $('.edit').click(function () {
-        // TODO
-        editContact('Ezra', 'Pirvu', '0741')
-    })
+    $('#contacts-list a.edit').click(function () {  // cu JS prind click. Caut titlul de tabel, sa fie link si clasa remove
+        var id = $(this).data('id'); // this este convertit la un selector cu obiect jquery prin $ ca sa pot lua id-ul din this
+        var contact = contacte.find (function (c) {
+            return c.id == id;
+        })
+        console.debug('edit', id, contact,  this);
+
+        $('input[name=id]').val(contact.id);
+        $('input[name=lastName]').val(contact.lastName);
+        $('input[name=firstName]').val(contact.firstName);
+        $('input[name=phone]').val(contact.phone);
+    });
+
+    // $('.edit').click(function () { // inlocuit cu un cod mai bun, de mai sus
+    //     // TODO better
+    //     editContact('Ezra', 'Pirvu', '0741')
+    // })
 });
 
-function editContact(firstName, lastName, phone) {
-    $('input[name=firstName]').val(firstName);
-    $('input[name=lastName]').val(lastName);
-    $('input[name=phone]').val(phone);
-}
+// function editContact(firstName, lastName, phone) {
+//     $('input[name=firstName]').val(firstName);
+//     $('input[name=lastName]').val(lastName);
+//     $('input[name=phone]').val(phone);
+// }
 
 
 
 // 1. convert from array of arrays into json
-// 2. load contacts from json file with AJAX
 // 3. remove contacts (UI)
 // 4. edit contact (UI)
+// 5. TODO php includes / templates
+
+
+
