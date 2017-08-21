@@ -5,7 +5,7 @@ function getRow(contact) {
     var firstName = contact.firstName || '';    // validare variabila (valoarea ei sau nimic)
     var row = '<tr><td>' + lastName + '</td><td>' + firstName + '</td><td>' + phone + '</td>' +
         '<td class="actions">'+
-            '<span><a href="date/remove.php?id=' + id + '">&#9986;</a></span> '+
+            '<span><a href="date/remove-db.php?id=' + id + '">&#9986;</a></span> '+
             '<span><a href="#" class="edit" data-id="' + id + '">&#x270E;</a></span>'+
         '</td>' +
         '</tr>';
@@ -18,7 +18,7 @@ function createRow(contact) {
     tableContent += getRow(contact);
 }
 
-$.ajax('date/save.php', {                            // aduce date din fisier contacte.json
+$.ajax('date/list.php', {                            // aduce date din fisier contacte.json
     cache: false,
     dataType: 'json'
 }).done(function (contacte) {                         // ajax face un request
