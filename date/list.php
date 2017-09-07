@@ -2,7 +2,7 @@
 include "connect-db.php";
 
 $sql = "SELECT * FROM agenda";
-$result = $conn->query($sql); // ?? dvd
+$result = $conn->query($sql);  // fac conexiunea ?
 
 $contacte = array();
 
